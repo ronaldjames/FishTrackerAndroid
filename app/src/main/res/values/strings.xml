@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Fish Tracker</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="userName_hint">Username</string>
+    <string name="loginEditText">Login</string>
+    <string name="register">register</string>
+    <string name="userId">User ID:</string>
+    <string name="pwordEditText_hint">Password</string>
+    <string name="password">Password:</string>
+    <string name="error_emptyPassword">password field is empty</string>
+    <string name="error_emptyUsername">user name field is empty</string>
+    <string name="error_usernameTaken">username already taken</string>
+    <string name="registering">Registering</string>
+    <string name="logginIn">Logging In</string>
+    <string name="error_badPwordOrUname">Bad username or password</string>
+    <string name="logout">Logout</string>
+    <string name="save_button">save</string>
+    <string name="capture_image">take photo</string>
+    <string name="content_desc_fish_photw">image of fish</string>
+    <string name="capture_image_text">take photo</string>
+    <string name="text_weight">weight lb</string>
+    <string name="error_message">Error</string>
+    <string name= "menuitem_edit">Edit</string>
+    <string name= "menuitem_delete">Delete</string>
+</resources>

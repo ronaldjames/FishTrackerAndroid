@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   
+    <string-array name="speciesArray">
+        <item >blue gill</item>
+        <item >black crappie</item>
+        <item >crappie</item>
+        <item >white crappie</item>
+        <item >war mouth</item>
+        <item >pumpkinseed</item>
+        <item >red ear sunfish</item>
+        <item >green sunfish</item>
+          <item >large mouth bass</item>
+        <item >small mouth bass</item>
+        <item >striped bass</item>
+        <item >white bass</item>
+        <item >yellow bass</item>
+        <item >rock bass</item>
+        <item >hybrid striped bass</item>
+        <item >channel catfish</item>
+        <item >black bullhead</item>
+        <item >brown bullhead</item>
+        <item >yellow bullhead</item>
+        <item >blue catfish</item>
+        <item >flathead catfish</item>
+           <item >norther pike</item>
+        <item >musky</item>
+        <item >walleye</item>
+        <item >sauger</item>
+        <item >saugeye</item>
+        <item >perch</item>
+        <item >chinook salmon</item>
+        <item >coho salmon</item>
+        <item >rainbow trout</item>
+        <item >lake trout</item>
+        <item >pink salmon</item>
+        <item >pan fish</item>
+        <item > bass</item>
+        <item >catfish</item>
+        <item >cold water species</item>
+        <item >salmon and trout</item>
+        <item >rough fish</item>
+        <item >carp</item>
+        <item >big mouth buffalo</item>
+        <item >bowfin</item>
+        <item >freshwater drum</item>
+    </string-array>
+    <string-array name="baitArray">
+        <item >worm</item>
+        <item >minnow</item>
+        <item >spoon</item>
+        <item >spinner</item>
+        <item >jig</item>
+        <item >dough</item>
+        <item >chicken liver</item>
+        <item >cut fish</item>
+    </string-array>
+    
+</resources>

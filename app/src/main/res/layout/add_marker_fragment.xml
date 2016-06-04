@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/addMarkerLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:clickable="true"
+    android:background="@color/button_material_dark">
+
+    <ImageView
+        android:id="@+id/fishImageView"
+        android:layout_width="130dp"
+        android:layout_height="157dp"
+        android:contentDescription="@string/content_desc_fish_photw"
+        android:src="@drawable/fish_icon_final"
+        android:background="@drawable/image_border"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:id="@+id/spinnerLayout"
+        android:orientation="vertical"
+        android:layout_width="311dp"
+        android:layout_height="132dp"
+        android:layout_below="@id/fishImageView">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_gravity="left|center_vertical"
+            android:text="bait"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/baitSpinner"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center_vertical"
+            android:entries="@array/baitArray" />
+
+        <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:text="species"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+                android:id="@+id/fishSpeciesSpinner"
+                android:layout_width="217dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|center_vertical"
+                android:entries="@array/speciesArray" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout"
+        android:layout_below="@id/spinnerLayout">
+
+        <TextView
+            android:id="@+id/weightTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:text="@string/text_weight"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/poundsEditText"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/ouncesTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="oz."
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/ouncesEditText"
+            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberDecimal" >
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/save_button"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="46dp">
+        </Button>
+
+        <Button
+            android:id="@+id/captureImageButton"
+            android:layout_gravity="center_horizontal"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/capture_image_text"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="39dp" />
+
+    </LinearLayout>
+</RelativeLayout>
