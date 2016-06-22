@@ -201,7 +201,7 @@ public class AddMarkerFragment extends Fragment {
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // permission was granted, yay! Do the
                     // storage-related task you need to do.
-                   // dispatchTakePictureIntent();
+                   dispatchTakePictureIntent();
 
                 } else {
 
