@@ -1,6 +1,5 @@
 package com.kodingwithkyle.kyle.fishtracker;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.Context;
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     private LocationManager locationManager;
     private Location myLocation;
     private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 12;
-    private static final int MY_PERMISSION_ACCESS_READ_STORAGE = 13;
-    private static final int MY_PERMISSION_ACCESS_WRITE_STORAGE = 14;
 
     private Activity activity = this;
     private GoogleMap googleMap;
@@ -49,28 +46,46 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        checkPerms();
         //set the layout
         setContentView(R.layout.activity_main);
 
         setUpMap();//setup the map
     }//end of onCreate()
 
-    private void checkPerms() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+    private void setUpMap() {
+        ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
+    }//end setUpMap()
 
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                    MY_PERMISSION_ACCESS_READ_STORAGE);
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }//end onResume()
 
-        }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                    MY_PERMISSION_ACCESS_WRITE_STORAGE);
-
-        }
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Stop method tracing that the activity started during onCreate()
+        android.os.Debug.stopMethodTracing();
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -85,41 +100,24 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 }
             }
             break;
-            case MY_PERMISSION_ACCESS_WRITE_STORAGE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                } else {
-                    Toast.makeText(this, "The app was not allowed to access your location. Hence, it cannot function properly. Please consider granting it this permission", Toast.LENGTH_LONG).show();
-                }
-            }
-            break;
-            case MY_PERMISSION_ACCESS_READ_STORAGE: {
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-                    Toast.makeText(this, "The app was not allowed to access your location. Hence, it cannot function properly. Please consider granting it this permission", Toast.LENGTH_LONG).show();
-                }
-            }
-            break;
             default: {
                 break;
             }
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        //start the task to load the markers
-        new LoadMarkersTask().execute((Object[]) null);
-    }//end onResume()
 
     @Override
     public void onMapReady(GoogleMap map) {
+
+
         if (googleMap != null) {
             return;
         }
+        //start the task to load the markers
+        new LoadMarkersTask().execute((Object[]) null);
+
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -199,17 +197,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
 
     }//end of onMapReady()
 
-    private void setUpMap() {
-        ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(this);
-    }//end setUpMap()
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Stop method tracing that the activity started during onCreate()
-        android.os.Debug.stopMethodTracing();
-    }
-
     @Override
     public void onFishDeleted() {
         googleMap.clear();
@@ -285,6 +272,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener,
                 String longitude = result.getString(longitudeIndex);
                 int idIndex = result.getColumnIndex("_id");
                 rowId = result.getLong(idIndex);
+                int speciesIndex = result.getColumnIndex("species");
+                String species = result.getString(speciesIndex);
                 LatLng latLng = new LatLng(Double.parseDouble(lat),
                         Double.parseDouble(longitude));
 

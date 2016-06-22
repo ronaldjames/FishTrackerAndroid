@@ -113,8 +113,7 @@ public class DetailsFragment extends Fragment {
             String pathName = result.getString(imageIndex);
 
             if(pathName != null){
-                Bitmap thumbnail = BitmapFactory.decodeFile(pathName);
-                fishImage.setImageBitmap(thumbnail);
+               setPic(pathName);
             }
             else{
                 fishImage.setImageBitmap(BitmapFactory.decodeResource(getResources(),
@@ -130,5 +129,44 @@ public class DetailsFragment extends Fragment {
         } // end method onPostExecute
 
     } // end class LoadFishTask
+
+    private void setPic(final String pathName) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                // Get the dimensions of the View
+                int targetW = fishImage.getWidth();
+                int targetH = fishImage.getHeight();
+
+                // Get the dimensions of the bitmap
+                BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+                bmOptions.inJustDecodeBounds = true;
+                BitmapFactory.decodeFile(pathName, bmOptions);
+                int photoW = bmOptions.outWidth;
+                int photoH = bmOptions.outHeight;
+                //  Toast.makeText(getActivity(), mCurrentPhotoPath, Toast.LENGTH_SHORT).show();
+                int scaleFactor = 1;
+
+                if (targetH > 0 || targetW > 0) {
+                    // Determine how much to scale down the image
+                    scaleFactor = Math.min(photoW / targetW, photoH / targetH);
+                }
+                // Decode the image file into a Bitmap sized to fill the View
+                bmOptions.inJustDecodeBounds = false;
+                bmOptions.inSampleSize = scaleFactor;
+                bmOptions.inPurgeable = true;
+
+                final Bitmap bitmap = BitmapFactory.decodeFile(pathName, bmOptions);
+
+                fishImage.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        fishImage.setImageBitmap(bitmap);
+                    }
+                });
+            }
+        }).start();
+    }
 
 }//end of DetailsFragment
